@@ -2,13 +2,16 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>🎉 Party Time! Sinh Nhật SEN - 04/03/2026</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;700&display=swap"
       rel="stylesheet"
     />
 
@@ -29,31 +32,11 @@
 
       body {
         font-family: "Quicksand", sans-serif;
-        background: linear-gradient(
-          -45deg,
-          var(--color-pink),
-          var(--color-yellow),
-          var(--color-blue),
-          var(--color-purple)
-        );
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
+        background-color: #fff5f7;
         color: var(--color-text);
         line-height: 1.6;
         min-height: 100vh;
         overflow: hidden;
-      }
-
-      @keyframes gradientBG {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
       }
 
       #falling-petals-canvas {
@@ -72,8 +55,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(15px);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -86,13 +69,14 @@
         color: white;
         border: none;
         padding: 20px 50px;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         font-family: "Pacifico", cursive;
         border-radius: 50px;
         cursor: pointer;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        animation: pulse 2s infinite;
-        border: 2px solid white;
+        animation: pulse 1.5s infinite;
+        border: 3px solid white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
       }
 
       @keyframes pulse {
@@ -100,7 +84,7 @@
           transform: scale(1);
         }
         50% {
-          transform: scale(1.05);
+          transform: scale(1.08) rotate(-2deg);
         }
         100% {
           transform: scale(1);
@@ -111,16 +95,20 @@
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
+        transform: scale(1.2);
       }
 
       #main-content {
         position: relative;
         z-index: 10;
         opacity: 0;
-        padding: 20px;
         height: 100vh;
-        overflow-y: auto;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         transition: opacity 1s ease;
+        padding: 15px;
       }
 
       #main-content.show {
@@ -128,140 +116,245 @@
       }
 
       .container {
-        max-width: 650px;
-        margin: 40px auto;
-        background: rgba(255, 255, 255, 0.9);
+        width: 100%;
+        max-width: 600px;
+        height: 90vh;
+        background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
-        padding: 40px;
-        border-radius: 30px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        border-radius: 25px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         border: 2px solid white;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
       }
 
-      /* CSS cho ảnh */
+      header {
+        flex-shrink: 0;
+        padding: 30px 20px 15px 20px;
+        background: white;
+        border-bottom: none;
+        z-index: 50;
+        position: sticky;
+        top: 0;
+      }
+
       .photo-container {
         display: flex;
         justify-content: center;
         gap: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
+
       .photo-frame {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
         border-radius: 50%;
         object-fit: cover;
         border: 4px solid white;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s;
-      }
-      .photo-frame:hover {
-        transform: scale(1.05) rotate(3deg);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
       }
 
       header h1 {
         font-family: "Pacifico", cursive;
         font-size: 2.8rem;
-        background: linear-gradient(
-          to right,
-          var(--color-pink),
-          var(--color-blue)
-        );
+        background: linear-gradient(to right, #ff6b6b, #845ec2, #ff9ff3);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-align: center;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
       }
+
       header p {
         text-align: center;
         font-size: 1.1rem;
         color: #555;
+        font-weight: bold;
       }
 
-      h2.party-title {
+      .scroll-area {
+        flex: 1;
+        height: 0;
+        overflow-y: auto;
+        padding: 20px;
+        scroll-behavior: smooth;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .scroll-area::-webkit-scrollbar {
+        display: none;
+      }
+
+      .letter-wrapper {
+        position: relative;
+        background: white;
+        padding: 25px 30px;
+        border-radius: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 4px solid transparent;
+        background-image:
+          linear-gradient(white, white),
+          linear-gradient(135deg, #ff9a9e, #feca57, #6dd5fa, #a29bfe);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        display: inline-block;
         text-align: center;
-        font-size: 1.8rem;
-        color: var(--color-purple);
-        margin: 30px 0;
       }
 
       #letter-content {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         white-space: pre-line;
-        min-height: 100px;
-        margin-bottom: 30px;
+        min-height: 80px;
+        font-weight: 700;
+        color: #4a148c;
+        line-height: 1.8;
+        font-family: monospace;
+        text-align: left;
+        display: inline-block;
+      }
+
+      .sticker {
+        position: absolute;
+        font-size: 2.5rem;
+        z-index: 5;
+        pointer-events: none;
+        animation: floatSticker 4s ease-in-out infinite;
+        filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.2));
+      }
+
+      .stk-1 {
+        top: -20px;
+        left: -10px;
+        transform: rotate(-15deg);
+      }
+      .stk-2 {
+        bottom: -20px;
+        right: -10px;
+        transform: rotate(10deg);
+        font-size: 3rem;
+        animation-delay: 1s;
+      }
+      .stk-3 {
+        top: -20px;
+        right: -10px;
+        font-size: 2rem;
+        animation-delay: 2s;
+      }
+
+      @keyframes floatSticker {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(10deg);
+        }
       }
 
       .details-container {
-        display: flex;
+        display: none;
         flex-direction: column;
         gap: 15px;
         opacity: 0;
         transition: opacity 1s ease;
+        width: 100%;
+        margin-top: 20px;
       }
+
       .details-container.show {
         opacity: 1;
+        display: flex;
       }
 
       .detail-box {
         display: flex;
         align-items: center;
-        background: #fff;
-        padding: 20px;
+        padding: 15px;
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        border-left: 5px solid;
-      }
-      .icon {
-        font-size: 2rem;
-        margin-right: 20px;
-      }
-      .info h3 {
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        color: #888;
-      }
-      .info p {
-        font-weight: 700;
-        font-size: 1.2rem;
+        transition: transform 0.3s;
+        width: 100%;
       }
 
       .box-time {
-        border-color: var(--color-blue);
+        background: #e0f7fa;
+        border: 2px solid #81d4fa;
       }
       .box-place {
-        border-color: var(--color-pink);
+        background: #fce4ec;
+        border: 2px solid #f48fb1;
       }
       .box-dress {
-        border-color: var(--color-yellow);
+        background: #fff8e1;
+        border: 2px solid #ffe082;
+      }
+
+      .icon {
+        font-size: 2rem;
+        margin-right: 15px;
+        filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
+      }
+
+      .info h3 {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        color: #666;
+        margin-bottom: 2px;
+      }
+
+      .info p {
+        font-weight: 800;
+        font-size: 1.1rem;
+        color: #333;
+        margin: 0;
+        font-family: "Quicksand", sans-serif;
       }
 
       .typewriter-cursor {
         display: inline-block;
-        width: 3px;
-        background-color: var(--color-pink);
+        width: 4px;
+        background-color: #ff4757;
         animation: blink 1s infinite;
-        height: 1.4em;
+        height: 1.3em;
+        vertical-align: text-bottom;
+        margin-left: 2px;
       }
+
       @keyframes blink {
         50% {
           opacity: 0;
         }
       }
+
       footer {
         text-align: center;
-        margin-top: 40px;
-        font-weight: 600;
-        color: var(--color-purple);
+        margin-top: 20px;
+        font-weight: 700;
+        color: #888;
+        font-size: 1rem;
+        padding-bottom: 20px;
+        width: 100%;
       }
     </style>
   </head>
   <body>
     <canvas id="falling-petals-canvas"></canvas>
+
     <audio id="background-music" loop>
       <source src="sound.mp3" type="audio/mpeg" />
     </audio>
+
     <div id="loader-wrapper">
-      <button id="enter-button">🎁 Nhấn để mở tiệc!</button>
+      <div style="text-align: center">
+        <p style="font-size: 4rem; margin-bottom: 10px">🎉</p>
+        <button id="enter-button">Nhấn để mở Tiệc! 🎁</button>
+      </div>
     </div>
 
     <div id="main-content">
@@ -271,40 +364,75 @@
             <img src="4.jpg" alt="SEN" class="photo-frame" />
             <img src="7.jpg" alt="SEN" class="photo-frame" />
           </div>
-          <h1>Happy Birthday SEN! 🎂</h1>
-          <p>Thêm một tuổi mới, thêm nhiều niềm vui! 🥳</p>
+          <h1>Happy Birthday SEN!</h1>
+          <p>Let's Party All Night! 🪩🕺💃</p>
         </header>
 
-        <main>
-          <h2 class="party-title">✨ THƯ MỜI TỪ SEN ✨</h2>
-          <div id="letter-content"></div>
+        <div class="scroll-area" id="scroll-area">
+          <div class="letter-wrapper">
+            <div class="sticker stk-1">🎈</div>
+            <div class="sticker stk-2">🎂</div>
+            <div class="sticker stk-3">🎁</div>
 
-          <div class="details-container" id="details-box">
-            <div class="detail-box box-time">
-              <div class="icon">⏰</div>
-              <div class="info">
-                <h3>Thời gian</h3>
-                <p>18:00 - Thứ Tư, 04/03/2026</p>
-              </div>
+            <div id="letter-content"></div>
+          </div>
+
+          <div style="position: relative; width: 100%">
+            <div
+              class="sticker"
+              style="top: -20px; left: -15px; font-size: 2rem"
+            >
+              🎉
             </div>
-            <div class="detail-box box-place">
-              <div class="icon">📍</div>
-              <div class="info">
-                <h3>Địa điểm</h3>
-                <p>Quán LÚA - HÀM GIANG</p>
-              </div>
+            <div
+              class="sticker"
+              style="bottom: 10%; right: 5%; font-size: 3rem"
+            >
+              🥳
             </div>
-            <div class="detail-box box-dress">
-              <div class="icon">👗</div>
-              <div class="info">
-                <h3>Trang phục</h3>
-                <p>Tự do, Rực rỡ càng tốt!</p>
+            <div class="sticker" style="top: 40%; left: 10%; font-size: 1.5rem">
+              💖
+            </div>
+            <div
+              class="sticker"
+              style="bottom: 30%; left: -10px; font-size: 2rem"
+            >
+              🌈
+            </div>
+            <div
+              class="sticker"
+              style="top: -10px; right: -20px; font-size: 1.5rem"
+            >
+              🥂
+            </div>
+
+            <div class="details-container" id="details-box">
+              <div class="detail-box box-time">
+                <div class="icon">⏰</div>
+                <div class="info">
+                  <h3>Thời gian nhập tiệc</h3>
+                  <p>18:00 - Thứ Tư, 15 /04/2026</p>
+                </div>
               </div>
+              <div class="detail-box box-place">
+                <div class="icon">📍</div>
+                <div class="info">
+                  <h3>Tọa độ quẩy</h3>
+                  <p>Quán LÚA - HÀM GIANG</p>
+                </div>
+              </div>
+              <div class="detail-box box-dress">
+                <div class="icon">👗</div>
+                <div class="info">
+                  <h3>Dress Code</h3>
+                  <p>Tự do, Rực rỡ & Cháy phố! 🔥</p>
+                </div>
+              </div>
+
+              <footer><p>Hóng sự có mặt của bạn! Love, SEN ❤️</p></footer>
             </div>
           </div>
-        </main>
-
-        <footer><p>Love, SEN ❤️</p></footer>
+        </div>
       </div>
     </div>
 
@@ -315,26 +443,40 @@
       canvas.height = window.innerHeight;
 
       let petals = [];
-      const colors = ["#ff7eb3", "#6dd5fa", "#feca57", "#a29bfe", "#54a0ff"];
+      const colors = [
+        "#ff4757",
+        "#1e90ff",
+        "#2ed573",
+        "#ffa502",
+        "#eccc68",
+        "#ff6b81",
+      ];
 
       class Petal {
         constructor() {
           this.x = Math.random() * canvas.width;
           this.y = Math.random() * canvas.height;
-          this.w = 10 + Math.random() * 15;
-          this.h = 10 + Math.random() * 15;
+          this.w = 8 + Math.random() * 12;
+          this.h = 8 + Math.random() * 12;
           this.color = colors[Math.floor(Math.random() * colors.length)];
-          this.xSpeed = Math.random() * 2 - 1;
-          this.ySpeed = 1 + Math.random() * 2;
+          this.xSpeed = Math.random() * 3 - 1.5;
+          this.ySpeed = 1.5 + Math.random() * 3;
           this.rotation = Math.random() * 360;
-          this.rotationSpeed = Math.random() * 4 - 2;
+          this.rotationSpeed = Math.random() * 6 - 3;
+          this.isCircle = Math.random() > 0.5;
         }
         draw() {
           ctx.save();
           ctx.translate(this.x, this.y);
           ctx.rotate((this.rotation * Math.PI) / 180);
           ctx.fillStyle = this.color;
-          ctx.fillRect(-this.w / 2, -this.h / 2, this.w, this.h);
+          if (this.isCircle) {
+            ctx.beginPath();
+            ctx.arc(0, 0, this.w / 2, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            ctx.fillRect(-this.w / 2, -this.h / 2, this.w, this.h);
+          }
           ctx.restore();
         }
         animate() {
@@ -349,7 +491,7 @@
         }
       }
 
-      for (let i = 0; i < 80; i++) petals.push(new Petal());
+      for (let i = 0; i < 100; i++) petals.push(new Petal());
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         petals.forEach((p) => p.animate());
@@ -362,18 +504,38 @@
       const letterContentElement = document.getElementById("letter-content");
       const detailsBox = document.getElementById("details-box");
       const mainContent = document.getElementById("main-content");
+      const scrollArea = document.getElementById("scroll-area");
       const music = document.getElementById("background-music");
 
-      // Nội dung thư mời mới
-      const letterText = `Chào bạn, người đặc biệt của SEN! 💕
+      const letterText = `
+╔══════════════════════════════════════╗
+    ✨🎂  THIỆP MỜI SINH NHẬT  🎂✨
+╚══════════════════════════════════════╝
 
-Thời gian trôi nhanh quá, SEN lại sắp bước sang một tuổi mới rồi. Nhân dịp đặc biệt này, SEN muốn tổ chức một bữa tiệc nhỏ ấm cúng để cùng những người mình yêu thương nhất đón chào khoảnh khắc ý nghĩa này.
+💌  Trân trọng kính mời,
 
-Sẽ thật tuyệt vời nếu bạn có thể dành chút thời gian đến chung vui, cùng SEN thổi nến, cắt bánh và chia sẻ những câu chuyện vui vẻ. Sự hiện diện của bạn chính là món quà sinh nhật quý giá và ý nghĩa nhất đối với SEN đấy! 🎁✨
+      🌙 Một năm nữa lại khẽ trôi qua và SEN lại có thêm một cột mốc đáng nhớ trong hành trình của mình.
 
-Mong sớm được gặp bạn tại bữa tiệc nhé!`;
+      💫 Nhân dịp đặc biệt này, SEN muốn dành một buổi tiệc nhỏ, ấm cúng để cùng những người thân thương chia sẻ niềm vui và tạo nên những kỷ niệm thật đẹp.
 
-      function typewriter(element, text, speed = 30) {
+🎁  Sự hiện diện của bạn chính là niềm vinh hạnh và cũng là món quà ý nghĩa nhất dành cho SEN trong ngày sinh nhật.
+
+🍷  Chúng ta sẽ cùng nhau:
+      ✨ Nâng ly chúc mừng
+      🎂 Thổi nến sinh nhật
+      🍰 Cắt bánh ngọt
+      🥂 Và tận hưởng một buổi tối đầy tiếng cười và sự gắn kết.
+
+💖  SEN rất mong được đón tiếp bạn tại bữa tiệc sinh nhật lần này.  
+    Sự có mặt của bạn sẽ làm cho khoảnh khắc ấy trở nên trọn vẹn hơn.
+
+╔══════════════════════════════════════╗
+      🎉  Trân trọng kính mời  🎉
+                  SEN ✨
+╚══════════════════════════════════════╝
+`;
+
+      function typewriter(element, text, speed = 35) {
         let i = 0;
         element.innerHTML = "";
         const cursor = document.createElement("span");
@@ -391,10 +553,17 @@ Mong sớm được gặp bạn tại bữa tiệc nhé!`;
               );
             }
             i++;
+            if (i % 5 === 0) {
+              scrollArea.scrollTop = scrollArea.scrollHeight;
+            }
             setTimeout(type, speed);
           } else {
             cursor.style.display = "none";
-            detailsBox.classList.add("show");
+            detailsBox.style.display = "flex";
+            setTimeout(() => {
+              detailsBox.classList.add("show");
+              scrollArea.scrollTop = scrollArea.scrollHeight;
+            }, 50);
           }
         }
         type();
@@ -403,8 +572,14 @@ Mong sớm được gặp bạn tại bữa tiệc nhé!`;
       enterButton.addEventListener("click", () => {
         loader.classList.add("hidden");
         mainContent.classList.add("show");
-        music.play().catch((e) => console.log("Cần tương tác để phát nhạc"));
-        document.body.style.overflow = "auto";
+
+        var playPromise = music.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.log("Cần tương tác người dùng để phát nhạc.");
+          });
+        }
+
         setTimeout(() => typewriter(letterContentElement, letterText), 500);
       });
 
