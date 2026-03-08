@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>🎉 Party Time! Sinh Nhật SEN - 15/04/2026</title>
+    <title>🎉 Party Time! Sinh Nhật SEN - 04/03/2026</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -172,6 +172,82 @@
         font-weight: bold;
       }
 
+      /* DÂY CỜ TRANG TRÍ */
+      .decorative-banner {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 10px 0;
+        position: relative;
+      }
+      .decorative-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #ddd;
+        z-index: -1;
+      }
+      .flag {
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        position: relative;
+        margin: 0 5px;
+      }
+      .flag.strawberry {
+        border-top: 35px solid #ff9a9e;
+      }
+      .flag.heart {
+        border-top: 35px solid #fff3e0;
+      }
+      .flag.heart::after {
+        content: "❤️";
+        color: #ff5252;
+        font-size: 12px;
+        position: absolute;
+        top: -25px;
+        left: -7px;
+      }
+      .flag.dots-pink {
+        border-top: 35px solid #f8bbd0;
+        background-image: radial-gradient(white 15%, transparent 15%);
+        background-size: 6px 6px;
+      }
+      .flag.stripes-blue {
+        border-top: 35px solid #b3e5fc;
+        background-image: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 5px,
+          rgba(255, 255, 255, 0.5) 5px,
+          rgba(255, 255, 255, 0.5) 10px
+        );
+      }
+      .flag.stripes-pink {
+        border-top: 35px solid #f48fb1;
+        background-image: repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 5px,
+          rgba(255, 255, 255, 0.5) 5px,
+          rgba(255, 255, 255, 0.5) 10px
+        );
+      }
+      .flag.flower {
+        border-top: 35px solid #e1bee7;
+      }
+      .flag.flower::after {
+        content: "🌸";
+        font-size: 12px;
+        position: absolute;
+        top: -25px;
+        left: -7px;
+      }
+
       .scroll-area {
         flex: 1;
         height: 0;
@@ -183,6 +259,7 @@
         align-items: center;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        overflow-x: hidden; /* Tránh vuốt ngang trên điện thoại */
       }
 
       .scroll-area::-webkit-scrollbar {
@@ -205,6 +282,7 @@
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         display: inline-block;
         text-align: center;
+        max-width: 100%; /* Quan trọng cho mobile */
       }
 
       #letter-content {
@@ -341,6 +419,127 @@
         padding-bottom: 20px;
         width: 100%;
       }
+
+      /* ========================================= */
+      /* CSS RESPONSIVE DÀNH RIÊNG CHO ĐIỆN THOẠI  */
+      /* ========================================= */
+      @media (max-width: 768px) {
+        #main-content {
+          padding: 10px;
+        }
+        .container {
+          height: 95vh;
+          border-radius: 15px;
+        }
+        header {
+          padding: 15px 10px 10px 10px;
+        }
+
+        /* Thu nhỏ ảnh đại diện */
+        .photo-frame {
+          width: 80px;
+          height: 80px;
+          border-width: 3px;
+        }
+        .photo-container {
+          gap: 10px;
+          margin-bottom: 10px;
+        }
+
+        header h1 {
+          font-size: 2.2rem;
+        }
+        header p {
+          font-size: 0.95rem;
+          margin-top: 0;
+        }
+
+        /* Thu nhỏ cờ trang trí */
+        .flag {
+          border-left-width: 10px;
+          border-right-width: 10px;
+        }
+        .flag.strawberry,
+        .flag.heart,
+        .flag.dots-pink,
+        .flag.stripes-blue,
+        .flag.stripes-pink,
+        .flag.flower {
+          border-top-width: 25px;
+        }
+        .flag.heart::after,
+        .flag.flower::after {
+          top: -18px;
+          left: -5px;
+          font-size: 10px;
+        }
+
+        .scroll-area {
+          padding: 10px;
+        }
+
+        /* Thu nhỏ padding của thư */
+        .letter-wrapper {
+          padding: 15px 10px;
+          margin-top: 10px;
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        /* CỰC KỲ QUAN TRỌNG: Thu nhỏ font chữ để giữ nguyên khung ASCII không bị bẻ dòng */
+        #letter-content {
+          font-size: 0.75rem;
+          line-height: 1.6;
+        }
+
+        /* Giảm kích thước sticker để không che mất chữ */
+        .sticker {
+          font-size: 1.8rem !important;
+        }
+        .stk-1 {
+          left: 0px;
+          top: -15px;
+        }
+        .stk-2 {
+          right: 0px;
+          bottom: -15px;
+          font-size: 2.2rem !important;
+        }
+        .stk-3 {
+          right: 0px;
+          top: -15px;
+        }
+
+        /* Thu nhỏ các hộp thông tin */
+        .detail-box {
+          padding: 12px;
+        }
+        .icon {
+          font-size: 1.5rem;
+          margin-right: 10px;
+        }
+        .info p {
+          font-size: 0.95rem;
+        }
+        footer {
+          font-size: 0.85rem;
+          margin-top: 10px;
+        }
+      }
+
+      /* Cho các điện thoại màn hình cực nhỏ (như iPhone SE) */
+      @media (max-width: 380px) {
+        #letter-content {
+          font-size: 0.65rem;
+        }
+        header h1 {
+          font-size: 1.8rem;
+        }
+        .photo-frame {
+          width: 70px;
+          height: 70px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -366,6 +565,17 @@
           </div>
           <h1>Happy Birthday SEN!</h1>
           <p>Let's Party All Night! 🪩🕺💃</p>
+
+          <div class="decorative-banner">
+            <div class="flag strawberry"></div>
+            <div class="flag heart"></div>
+            <div class="flag dots-pink"></div>
+            <div class="flag stripes-blue"></div>
+            <div class="flag stripes-pink"></div>
+            <div class="flag flower"></div>
+            <div class="flag heart"></div>
+            <div class="flag stripes-blue"></div>
+          </div>
         </header>
 
         <div class="scroll-area" id="scroll-area">
@@ -380,28 +590,28 @@
           <div style="position: relative; width: 100%">
             <div
               class="sticker"
-              style="top: -20px; left: -15px; font-size: 2rem"
+              style="top: -20px; left: -5px; font-size: 2rem"
             >
               🎉
             </div>
             <div
               class="sticker"
-              style="bottom: 10%; right: 5%; font-size: 3rem"
+              style="bottom: 10%; right: 5%; font-size: 2.5rem"
             >
               🥳
             </div>
-            <div class="sticker" style="top: 40%; left: 10%; font-size: 1.5rem">
+            <div class="sticker" style="top: 40%; left: 5%; font-size: 1.5rem">
               💖
             </div>
             <div
               class="sticker"
-              style="bottom: 30%; left: -10px; font-size: 2rem"
+              style="bottom: 30%; left: 0px; font-size: 2rem"
             >
               🌈
             </div>
             <div
               class="sticker"
-              style="top: -10px; right: -20px; font-size: 1.5rem"
+              style="top: -10px; right: -5px; font-size: 1.5rem"
             >
               🥂
             </div>
@@ -535,7 +745,7 @@
 ╚══════════════════════════════════════╝
 `;
 
-      function typewriter(element, text, speed = 35) {
+      function typewriter(element, text, speed = 30) {
         let i = 0;
         element.innerHTML = "";
         const cursor = document.createElement("span");
